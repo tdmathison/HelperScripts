@@ -5,9 +5,24 @@
 #
 # Created for use in the OSCE course.
 #
-# Usage:
+# Examples:
 # python3 ./str2hexpush.py --string "ipconfig /all"
+# "\x69\x70\x63\x6f\x6e\x66\x69\x67\x20\x2f\x61\x6c\x6c"
+# 
+# push 0x6c6c612f
+# push 0x20676966
+# push 0x6e6f6370
+# push 0x69000000
+#
 # python3 ./str2hexpush.py --string $'curl http://192.168.1.1\n'
+# "\x63\x75\x72\x6c\x20\x68\x74\x74\x70\x3a\x2f\x2f\x31\x39\x32\x2e\x31\x36\x38\x2e\x31\x2e\x31\x0a"
+# 
+# push 0x0a312e31
+# push 0x2e383631
+# push 0x2e323931
+# push 0x2f2f3a70
+# push 0x74746820
+# push 0x6c727563
 
 # !/usr/bin/python3
 

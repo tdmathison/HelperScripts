@@ -35,7 +35,7 @@ parser = argparse.ArgumentParser(
     usage="\n  ./str2hexpush.py --string \"ipconfig /all\"\n" +
           "  ./str2hexpush.py --string $'curl http://192.168.1.1\\n'")
 
-parser.add_argument("-s", "--string", type=str, help="String to convert.")
+parser.add_argument("-s", "--string", type=str, help="String to convert.", required=True)
 parser.add_argument("-p", "--pad", type=str, help="Pad value (eg. 90). Default=00")
 
 

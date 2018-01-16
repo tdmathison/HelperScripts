@@ -7,7 +7,7 @@
 #
 # Examples:
 # python3 ./str2hexpush.py --string "ipconfig /all"
-# "\x69\x70\x63\x6f\x6e\x66\x69\x67\x20\x2f\x61\x6c\x6c"
+# "\x68\x2f\x61\x6c\x6c\x68\x66\x69\x67\x20\x68\x70\x63\x6f\x6e\x68\x00\x00\x00\x69"
 # 
 # push 0x6c6c612f
 # push 0x20676966
@@ -15,7 +15,7 @@
 # push 0x69000000
 #
 # python3 ./str2hexpush.py --string $'curl http://192.168.1.1\n'
-# "\x63\x75\x72\x6c\x20\x68\x74\x74\x70\x3a\x2f\x2f\x31\x39\x32\x2e\x31\x36\x38\x2e\x31\x2e\x31\x0a"
+# "\x68\x31\x2e\x31\x0a\x68\x31\x36\x38\x2e\x68\x31\x39\x32\x2e\x68\x70\x3a\x2f\x2f\x68\x20\x68\x74\x74\x68\x63\x75\x72\x6c"
 # 
 # push 0x0a312e31
 # push 0x2e383631
@@ -52,14 +52,20 @@ if __name__ == '__main__':
         args.pad = b'00'
 
     string_hex = binascii.hexlify(args.string.encode())
-    print("\"\\x" + "\\x".join(string_hex[i:i + 2].decode() for i in range(0, len(string_hex), 2)) + "\"")
-    print()
-
     string_bytes_split = [string_hex[i:i + 2] for i in range(0, len(string_hex), 2)]
 
+    hex_rep = "\""
+    asm_rep = ""
+
     for x in byte_group(4, string_bytes_split[::-1], args.pad):
-        print("push 0x"
-              + x[0].decode()
-              + x[1].decode()
-              + x[2].decode()
-              + x[3].decode())
+        byte_0 = x[0].decode()
+        byte_1 = x[1].decode()
+        byte_2 = x[2].decode()
+        byte_3 = x[3].decode()
+        asm_rep += "push 0x" + byte_0 + byte_1 + byte_2 + byte_3 + "\n"
+        hex_rep += "\\x68\\x{}\\x{}\\x{}\\x{}".format(byte_3, byte_2, byte_1, byte_0)
+    hex_rep += "\""
+
+    print(hex_rep)
+    print(asm_rep)
+

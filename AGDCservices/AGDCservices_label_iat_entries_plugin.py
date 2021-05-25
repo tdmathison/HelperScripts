@@ -4,6 +4,9 @@
 # This is a rough conversion of the following script that was built for Ghidra
 # https://github.com/AGDCservices/Ghidra-Scripts/blob/master/Label_Dynamically_Resolved_Iat_Entries.py
 #
+# NOTE: This relies on output from Dump_Labeled_Iat_Memory.exe
+# https://github.com/AGDCservices/Misc-Malware-Analysis-Tools
+#
 # Travis Mathison | github.com/tdmathison
 
 import idaapi

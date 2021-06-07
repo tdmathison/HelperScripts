@@ -26,12 +26,6 @@ def prga(s, text):
         output += chr(k ^ ord(text[x]))
     return output
 
+def rc4crypt(key, data):
+    return prga(ksa(key), data)
 
-if __name__ == '__main__':
-    key = "test-key"
-    text = "Some text to encrypt"
-
-    ciphertext = prga(ksa(key), text)
-    print('ciphertext: %s' % ciphertext)
-    plaintext = prga(ksa(key), ciphertext)
-    print('plaintext: %s' % plaintext)
